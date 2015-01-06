@@ -23,16 +23,24 @@ namespace SimpleCalculator
             String output;
             String delimitersString;
             String[] delimitersArray;
-            String[] delimiters; 
+           String[] delimiters=new String[] { ",", "\n" }; 
             int flag=0;
             if (data == "") return sum;
             else
             {
-                if (data.StartsWith("//")) flag = data.IndexOf("\n");
-                delimitersString = data.Substring(0, flag + 1);
-                delimitersArray = delimitersString.Split(new String[] {"//", "\n" }, StringSplitOptions.None);
-                delimiters = delimitersArray[1].Split(new String[] { "[", "]" }, StringSplitOptions.None);
-                output = data.Substring(flag+1);
+                if (data.StartsWith("//"))
+                {
+                    flag = data.IndexOf("\n");
+                    delimitersString = data.Substring(0, flag + 1);
+                    delimitersArray = delimitersString.Split(new String[] { "//", "\n" }, StringSplitOptions.None);
+                    delimiters = delimitersArray[1].Split(new String[] { "[", "]" }, StringSplitOptions.None);
+                    output = data.Substring(flag + 1);
+                  
+                }
+                else
+                {
+                    output = data;
+                }
                 newArray = output.Split(delimiters, StringSplitOptions.None);
             
             }
